@@ -1,0 +1,14 @@
+
+ Program HJCFIT Windows Version (Beta)
+
+Copyright D. Colquhoun, I. Vais, University College London 2004
+All rights reserved.(Intel Visual Fortran/Gino version)
+Please cite: http://www.ucl.ac.uk/Pharmacology/dc.html
+
+HJCFIT: Fit of model to open-shut times with missed events
+ (Uses HJC distributions, exact for 1st 2 deadtimes then
+ asymptotic, to calculate likelihood of record
+
+DATE of analysis =          15-AUG-2012
+
+Initialisation file = AChdemo.ini                             

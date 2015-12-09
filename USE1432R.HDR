@@ -1,0 +1,11 @@
+      INTEGER*2  U14Open1401,U14LongsFrom1401,U14Ld,
+     &           U14SendString,U14Close1401
+      DLL_IMPORT U14Open1401,U14LongsFrom1401,U14Ld,
+     &           U14SendString,U14Close1401
+
+
+c===========================================================================
+
+
+
+

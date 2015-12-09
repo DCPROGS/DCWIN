@@ -1,0 +1,14 @@
+Plot/ filter sample-; Date of analysis: 12-JUN-2006
+
+Computer : PHARM196                                
+User : ivais                                   
+Drives : A CDE           Q S U     
+
+Data from CONSAM file:    310502C1.SSD                  
+
+INPUT: continuous data file name: 310502C1.SSD                  
+ Date of experiment: 31-May-2002 (patch number   1)
+ Tape details: TO4                     
+ Patch type: Outside-out   
+ Membrane potential (mV) =   -100.00
+ Temperature =      20.0

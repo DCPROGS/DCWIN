@@ -1,0 +1,252 @@
+c==========================================================================
+C	IOANA L.VAIS UCL PHARMACOLOGY
+c===========================================================================
+C       THIS A HEADER FILE TO BE INCLUDED IN A LAHEY 90 FORTRAN PROGRAM
+C	FOR WINDOWS (EQUIVALENT TO CED USE1401.H)
+C
+C****************************************************************************)
+C*                                                                          *)
+C*      C / C++ LANGUAGE            -   FORTRAN  EQUIVALENT                 *)
+C*                                                                          *)
+C****************************************************************************)
+C
+C       SHORT,WORD   	    	    -	INTEGER*2
+C       DWORD,LONG	            -	INTEGER*4
+C	LPSTR      	            -	CHARACTER*1   STRING(:)
+C	LPCSTR     	            -	CHARACTER*(*) STRING ;IN CALL USE: CARG(STRING)
+C	CHAR       	            -   CHARACTER*1
+C	VOID FAR * 	            -	INTEGER*2 ARRAY(0:N)
+C	LONG FAR * 	            -	INTEGER*4 ARRAY(0:N)
+C
+C-----------------------------------------------------------------------------
+C	typedef struct              -   TYPE STRUCTA
+C	{                            	   INTEGER     :: SPC
+C   	   short   sPC;              	   CHARACTER*1 :: A
+C   	   char    A;                	   CHARACTER*1 :: X
+C   	   char    X;                	   CHARACTER*1 :: Y
+C   	   char    Y;                	   CHARACTER*1 :: STAT
+C   	   char    stat;             	   CHARACTER*1 :: RUBISH
+C   	   char    rubbish;             END TYPE STRUCTA
+C	} T1401REGISTERS;               TYPE (STRUCTA)  :: T1401REGISTERS
+C
+C	typedef union               -   TYPE STRUCTB
+C	{                                  CHARACTER*1 :: CHRS(22)
+C   	   char           chrs[22];        INTEGER     :: INTS(11)
+C   	   short          ints[11];        INTEGER     :: LONGS(5)
+C   	   long           longs[5];        TYPE (STRUCTA) :: REGISTERS
+C   	   T1401REGISTERS registers;    END TYPE STRUCTB
+C	} TCSBLOCK;                     TYPE (STRUCTB)  :: TCSBLOCK
+C===========================================================================
+
+C****************************************************************************)
+C*                                                                          *)
+C* Type definitions                                                         *)
+C*                                                                          *)
+C****************************************************************************)
+
+      TYPE STRUCTA
+         INTEGER   :: SPC
+         CHARACTER*1 :: A
+         CHARACTER*1 :: X
+         CHARACTER*1 :: Y
+         CHARACTER*1 :: STAT
+         CHARACTER*1 :: RUBISH
+      END TYPE STRUCTA
+
+C!!      TYPE (STRUCTA)  :: T1401REGISTERS
+
+      TYPE STRUCTB
+         CHARACTER*1 :: CHRS(22)
+         INTEGER   :: INTS(11)
+         INTEGER   :: LONGS(5)
+         TYPE (STRUCTA) :: REGISTERS
+      END TYPE STRUCTB
+
+C!!      TYPE (STRUCTB)  :: TCSBLOCK
+
+      INTEGER*2 U14ERR_NOERROR,U14ERR_OFF,U14ERR_NC,U14ERR_ILL,
+     &  U14ERR_NOIF,U14ERR_TIME,U14ERR_BADSW,U14ERR_PTIME,
+     &	U14ERR_NOINT,U14ERR_INUSE,U14ERR_NODMA,U14ERR_BADHAND,
+     &	U14ERR_BAD1401NUM,U14ERR_NO_SUCH_FN,U14ERR_NO_SUCH_SUBFN,
+     &	U14ERR_ERR_NOOUT,U14ERR_ERR_NOIN,U14ERR_ERR_STRLEN,
+     &	U14ERR_LOCKFAIL,U14ERR_UNLOCKFAIL,U14ERR_ALREADYSET,
+     &	U14ERR_NOTSET,U14ERR_BADAREA,U14ERR_NOFILE,U14ERR_READERR,
+     &	U14ERR_UNKNOWN,U14ERR_HOSTSPACE,U14ERR_LOCKERR,U14ERR_CLOADERR,
+     &	U14ERR_TOXXXERR,U14ERR_NO386ENH,U14ERR_NO1401DRIV,
+     &  U14ERR_DRIVTOOOLD,U14ERR_TIMEOUT,U14ERR_BUFF_SMALL,
+     &  U14ERR_CBALREADY,U14ERR_BADDEREG,U14ERR_DRIVCOMMS,
+     &  U14ERR_OUTOFMEMORY,U14TYPE1401,U14TYPEPLUS,U14TYPEU1401,
+     &	U14TYPEUNKNOWN
+
+
+      INTEGER*2 U14LastErrCode,U14Open1401,U14Close1401,U14Reset1401,
+     &  U14TypeOf1401,U14Stat1401,U14CharCount,U14LineCount,
+     &  U14SendString,U14GetString,U14SendChar,U14GetChar,
+     &  U14LdCmd,U14SetTransArea,U14UnSetTransfer,U14ToHost,
+     &  U14To1401,U14StrToLongs,U14LongsFrom1401,U14OutBufSpace,
+     &  U14GetUserMemorySize,U14KillIO1401,U14ZeroBlock,U14StateOf1401,
+     &  U14BlkTransState,U14StopCircular,U14Grab1401,U14Free1401,
+     &	U14Step1401,U14StepTill1401,U14Registers1401,U14SetOrin,
+     &  U14Set1401Registers,U14ByteCount,U14ZeroBlockCount
+
+
+      INTEGER*4 U14Ld,U14GetTimeout,U14DriverVersion,U14DriverType,
+     &	U14BaseAddr1401
+C
+
+      INTEGER*2 U14_Open1401,U14_Close1401,U14_Reset1401,
+     &  U14_TypeOf1401,U14_Stat1401,U14_LineCount,
+     &  U14_SendString,U14_GetString,U14_SendChar,U14_GetChar,
+     &  U14_SetTransfer,U14_UnSetTransfer,MINDRIVERMAJREV,
+     &  U14_REGCALLBACK,U14_GETMONITORBUF,
+     &  U14_KillIO1401,U14_StateOf1401,
+     &  U14_BlkTransState,U14_StopCircular,U14_Grab1401,U14_Free1401,
+     &	U14_Step1401,U14_StepTill1401,U14_Registers1401,U14_SetOrin,
+     &  U14_Set1401Registers,U14_GETCIRCSELECTOR,U14_GETBASEADDRESS,
+     &  U14_GETDRIVERREVISION,U14_STARTSELFTEST,U14_NOSUBFN,
+     &  U14_BYTECOUNT,U14_GETTRANSFER,U14_CHECKSELFTEST,
+     &	U14_TRANSFERFLAGS
+
+      CHARACTER*11 :: WM_CEDCALLBACK_STR
+      INTEGER*2 U14CallDriver,U14RegCallBackWnd,U14DeRegCallBackWnd,
+     &  U14GetMonBuff,U14GetCircSelector,U14GetTransfer
+
+C
+
+C****************************************************************************/
+C*                                                                          */
+C* Return codes from functions                                              */
+C*                                                                          */
+C****************************************************************************/
+
+      PARAMETER (U14ERR_NOERROR       =0)     !* no problems                        *
+
+      PARAMETER (U14ERR_OFF           =-500)  !* 1401 there but switched off    *
+      PARAMETER (U14ERR_NC            =-501)  !* 1401 not connected             *
+      PARAMETER (U14ERR_ILL           =-502)  !* if present it is ill           *
+      PARAMETER (U14ERR_NOIF          =-503)  !* I/F card missing               *
+      PARAMETER (U14ERR_TIME          =-504)  !* 1401 failed to come ready      *
+      PARAMETER (U14ERR_BADSW         =-505)  !* I/F card bad switches          *
+      PARAMETER (U14ERR_PTIME         =-506)  !* 1401+ failed to come ready     *
+      PARAMETER (U14ERR_NOINT         =-507)  !* couldn't grab the int vector   *
+      PARAMETER (U14ERR_INUSE         =-508)  !* 1401 is already in use         *
+      PARAMETER (U14ERR_NODMA         =-509)  !* couldn't get DMA channel       *
+      PARAMETER (U14ERR_BADHAND       =-510)  !* handle provided was bad        *
+      PARAMETER (U14ERR_BAD1401NUM    =-511)  !* 1401 number provided was bad   *
+
+      PARAMETER (U14ERR_NO_SUCH_FN    =-520)  !* no such function               *
+      PARAMETER (U14ERR_NO_SUCH_SUBFN =-521)  !* no such sub function           *
+      PARAMETER (U14ERR_ERR_NOOUT     =-522)  !* no room in output buffer       *
+      PARAMETER (U14ERR_ERR_NOIN      =-523)  !* no input in buffer             *
+      PARAMETER (U14ERR_ERR_STRLEN    =-524)  !* string longer than buffer      *
+      PARAMETER (U14ERR_LOCKFAIL      =-525)  !* failed to lock memory          *
+      PARAMETER (U14ERR_UNLOCKFAIL    =-526)  !* failed to unlock memory        *
+      PARAMETER (U14ERR_ALREADYSET    =-527)  !* area already set up            *
+      PARAMETER (U14ERR_NOTSET        =-528)  !* area not set up                *
+      PARAMETER (U14ERR_BADAREA       =-529)  !* illegal area number            *
+
+      PARAMETER (U14ERR_NOFILE        =-540)  !* command file not found         *
+      PARAMETER (U14ERR_READERR       =-541)  !* error reading command file     *
+      PARAMETER (U14ERR_UNKNOWN       =-542)  !* unknown command                *
+      PARAMETER (U14ERR_HOSTSPACE     =-543)  !* not enough host space to load  *
+      PARAMETER (U14ERR_LOCKERR       =-544)  !* could not lock resource/command*
+      PARAMETER (U14ERR_CLOADERR      =-545)  !* CLOAD command failed           *
+
+      PARAMETER (U14ERR_TOXXXERR      =-560)  !* tohost/1401 failed             *
+
+      PARAMETER (U14ERR_NO386ENH      =-580)  !* not 386 enhanced mode          *
+      PARAMETER (U14ERR_NO1401DRIV    =-581)  !* no device driver               *
+      PARAMETER (U14ERR_DRIVTOOOLD    =-582)  !* device driver too old          *
+
+      PARAMETER (U14ERR_TIMEOUT       =-590)  !* timeout occurred               *
+
+      PARAMETER (U14ERR_BUFF_SMALL    =-600)  !* buffer for getstring too small *
+      PARAMETER (U14ERR_CBALREADY     =-601)  !* there is already a callback    *
+      PARAMETER (U14ERR_BADDEREG      =-602)  !* bad parameter to deregcallback *
+
+      PARAMETER (U14ERR_DRIVCOMMS     =-610)  !* failed talking to driver       *
+      PARAMETER (U14ERR_OUTOFMEMORY   =-611)  !* neede memory and couldnt get it*
+
+      PARAMETER (U14TYPE1401          = 0)    !* standard 1401                  *
+      PARAMETER (U14TYPEPLUS          = 1)    !* 1401 plus                      *
+      PARAMETER (U14TYPEU1401         = 2)    !* u1401                          *
+      PARAMETER (U14TYPEUNKNOWN       =-1)    !* dont know                      *
+
+
+
+C****************************************************************************/
+C*                                                                          */
+C* Windows 3.1 /Dos Specifics                                               */
+C*                                                                          */
+C****************************************************************************/
+
+      PARAMETER (MINDRIVERMAJREV      = 1)    !(* minimum driver revision level we need   *)
+
+      PARAMETER (U14_OPEN1401         =0)
+      PARAMETER (U14_CLOSE1401        =1)
+      PARAMETER (U14_SENDSTRING       =2)
+      PARAMETER (U14_RESET1401        =3)
+      PARAMETER (U14_GETCHAR          =4)
+      PARAMETER (U14_SENDCHAR         =5)
+      PARAMETER (U14_STAT1401         =6)
+      PARAMETER (U14_LINECOUNT        =7)
+      PARAMETER (U14_GETSTRING        =8)
+      PARAMETER (U14_REGCALLBACK      =9)
+      PARAMETER (U14_GETMONITORBUF    =10)
+      PARAMETER (U14_SETTRANSFER      =11)
+      PARAMETER (U14_UNSETTRANSFER    =12)
+      PARAMETER (U14_GETCIRCSELECTOR  =13)
+      PARAMETER (U14_GETOUTBUFSPACE   =14)
+      PARAMETER (U14_GETBASEADDRESS   =15)
+      PARAMETER (U14_GETDRIVERREVISION=16)
+      PARAMETER (U14_GETTRANSFER      =17)
+      PARAMETER (U14_KILLIO1401       =18)
+      PARAMETER (U14_BLKTRANSSTATE    =19)
+      PARAMETER (U14_BYTECOUNT        =20)
+      PARAMETER (U14_ZEROBLOCKCOUNT   =21)
+      PARAMETER (U14_STOPCIRCULAR     =22)
+      PARAMETER (U14_STATEOF1401      =23)
+
+      PARAMETER (U14_REGISTERS1401    =24)
+      PARAMETER (U14_GRAB1401         =25)
+      PARAMETER (U14_FREE1401         =26)
+      PARAMETER (U14_STEP1401         =27)
+      PARAMETER (U14_SET1401REGISTERS =28)
+      PARAMETER (U14_STEPTILL1401     =29)
+      PARAMETER (U14_SETORIN          =30)
+      PARAMETER (U14_STARTSELFTEST    =31)
+      PARAMETER (U14_CHECKSELFTEST    =32)
+      PARAMETER (U14_TYPEOF1401       =33)
+      PARAMETER (U14_TRANSFERFLAGS    =34)
+
+      PARAMETER (U14_NOSUBFN          =0)
+
+      PARAMETER (WM_CEDCALLBACK_STR   ="CEDCALLBACK")
+      PARAMETER (GET_TX_MAXENTRIES    =65)      
+
+
+C****************************************************************************/
+C*                                                                          */
+C*    Declarations                                                          */
+C*                                                                          */
+C****************************************************************************/
+
+c      DLL_IMPORT U14LastErrCode,U14Open1401,U14Close1401,U14Reset1401,
+c     &  U14TypeOf1401,U14Stat1401,U14CharCount,U14LineCount,
+c     &  U14SendString,U14GetString,U14SendChar,U14GetChar,
+c     &  U14LdCmd,U14SetTransArea,U14UnSetTransfer,U14ToHost,
+c     &  U14To1401,U14StrToLongs,U14LongsFrom1401,U14OutBufSpace,
+c     &  U14GetUserMemorySize,U14KillIO1401,U14ZeroBlock,U14StateOf1401,
+c     &  U14BlkTransState,U14StopCircular,U14Grab1401,U14Free1401,
+c     &	U14Step1401,U14StepTill1401,U14Registers1401,U14SetOrin,
+c     &  U14Set1401Registers,U14SetTimeout,U14ByteCount,U14DriverType,
+c     &  U14Ld,U14GetTimeout,U14BaseAddr1401,U14DriverVersion,
+c     &  U14ZeroBlockCount
+c      DLL_IMPORT U14CallDriver,U14RegCallBackWnd,U14DeRegCallBackWnd,
+c     &  U14GetMonBuff,U14GetCircSelector,U14GetTransfer
+
+c===========================================================================
+
+
+
+
